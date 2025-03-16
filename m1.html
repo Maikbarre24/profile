@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIK PROFILE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Contenitore principale (più grande) */
+        #bio-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            border: 3px solid cyan;
+            box-shadow: 0px 0px 15px cyan;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        /* Video di sfondo */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        /* Immagine del profilo (centrata e più grande) */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            display: block;
+            margin: 0 auto 15px;
+        }
+        /* Effetto glitch */
+        .glitch-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            display: inline-block;
+            overflow: hidden;
+        }
+        /* Info */
+        .info {
+            font-size: 1.2em;
+            color: white;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        /* Link */
+        .links {
+            margin-top: 15px;
+        }
+        .links a {
+            color: cyan;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 8px;
+            transition: 0.3s;
+        }
+        .links a:hover {
+            color: white;
+            text-shadow: 0 0 10px white;
+        }
+        /* Discord Box */
+        .discord-box {
+            margin-top: 25px;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            background: rgba(0, 200, 255, 0.2);
+            border: 2px solid cyan;
+            color: white;
+        }
+        /* Glitch su tutti i testi */
+        .glitch {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Video di sfondo -->
+<video id="video-background" autoplay loop muted>
+    <source src="background.mp4" type="video/mp4">
+    Il tuo browser non supporta i video.
+</video>
+
+<!-- Audio di sottofondo -->
+<audio id="background-audio" autoplay loop>
+    <source src="audio.mp3" type="audio/mp3">
+    Il tuo browser non supporta l'elemento audio.
+</audio>
+
+<!-- Riquadro delle info -->
+<div id="bio-box">
+    <img src="profile.jpg" alt="Profilo" class="profile-pic">
+    <div class="glitch glitch-text">MAIKBARRE</div>
+
+    <div class="glitch info">Info Maik</div>
+    
+    <div class="glitch info">Ecco tutte le informazioni e i link ufficiali:</div>
+
+    <div class="glitch links">
+        <a href="https://www.instagram.com/nuoll24?igsh=N3p5aDJqZHprdXoy">Instagram</a> |
+        <a href="https://www.tiktok.com/@maikbarre24?_t=ZN-8ujv5vSsMKY&_r=1">TikTok</a> |
+    </div>
+
+    <div class="glitch discord-box">
+        DISCORD MAIK<br>MAIKTHEBLAK<br>
+        <a href="https://discord.gg/t8ndkBpX" class="glitch">JOIN</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const glitchElements = document.querySelectorAll(".glitch");
+        const audio = document.getElementById("background-audio");
+
+        // Effetto glitch su tutti i testi
+        setInterval(function() {
+            glitchElements.forEach(function(el) {
+                let x1 = Math.random() * 3 - 1.5;
+                let y1 = Math.random() * 3 - 1.5;
+                let x2 = Math.random() * 3 - 1.5;
+                let y2 = Math.random() * 3 - 1.5;
+                el.style.textShadow = x1 + "px " + y1 + "px red, " + x2 + "px " + y2 + "px blue";
+            });
+        }, 200);
+
+        // Aggiungi un listener per il click per attivare l'audio
+        document.body.addEventListener('click', function() {
+            audio.play().catch(() => {
+                console.log("Audio bloccato dal browser.");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
