@@ -16,7 +16,45 @@
             align-items: center;
             height: 100vh;
         }
-        /* Contenitore principale (responsive) */
+
+        /* Schermata iniziale */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Nascondere il contenuto principale fino al click */
+        #main-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Video di sfondo */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Contenitore principale */
         #bio-box {
             position: absolute;
             top: 50%;
@@ -32,17 +70,8 @@
             border-radius: 10px;
             z-index: 1;
         }
-        /* Video di sfondo */
-        #video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        /* Immagine del profilo */
+
+        /* Immagine profilo */
         .profile-pic {
             width: 120px;
             height: 120px;
@@ -51,6 +80,7 @@
             display: block;
             margin: 0 auto 15px;
         }
+
         /* Effetto glitch */
         .glitch-text {
             font-size: 2.2em;
@@ -58,19 +88,21 @@
             color: white;
             text-transform: uppercase;
             display: inline-block;
-            overflow: hidden;
         }
-        /* Info */
+
+        /* Informazioni */
         .info {
             font-size: 1.2em;
             color: white;
             margin-top: 15px;
             opacity: 0.9;
         }
+
         /* Link */
         .links {
             margin-top: 15px;
         }
+
         .links a {
             color: cyan;
             text-decoration: none;
@@ -79,10 +111,12 @@
             margin: 0 8px;
             transition: 0.3s;
         }
+
         .links a:hover {
             color: white;
             text-shadow: 0 0 10px white;
         }
+
         /* Discord Box */
         .discord-box {
             margin-top: 25px;
@@ -93,13 +127,8 @@
             border: 2px solid cyan;
             color: white;
         }
-        /* Glitch su tutti i testi */
-        .glitch {
-            display: inline-block;
-            position: relative;
-        }
 
-        /* Responsività per telefoni e tablet */
+        /* Responsività */
         @media screen and (max-width: 768px) {
             #bio-box {
                 width: 90%;
@@ -120,56 +149,56 @@
 </head>
 <body>
 
-<!-- Video di sfondo -->
-<video id="video-background" autoplay loop muted>
-    <source src="background.mp4" type="video/mp4">
-    Il tuo browser non supporta i video.
-</video>
+<!-- Schermata iniziale -->
+<div id="intro-screen">CLICK TO ENTER</div>
 
-<!-- Audio di sottofondo -->
-<audio id="background-audio" autoplay loop>
-    <source src="audio.mp3" type="audio/mp3">
-    Il tuo browser non supporta l'elemento audio.
-</audio>
+<!-- Contenuto principale nascosto -->
+<div id="main-content">
+    <!-- Video di sfondo -->
+    <video id="video-background" autoplay loop muted>
+        <source src="background.mp4" type="video/mp4">
+        Il tuo browser non supporta i video.
+    </video>
 
-<!-- Riquadro delle info -->
-<div id="bio-box">
-    <img src="profile.jpg" alt="Profilo" class="profile-pic">
-    <div class="glitch glitch-text">MAIKBARRE</div>
+    <!-- Audio di sottofondo -->
+    <audio id="background-audio" loop>
+        <source src="audio.mp3" type="audio/mp3">
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
 
-    <div class="glitch info">Info Maik</div>
-    
-    <div class="glitch info">Ecco tutte le informazioni e i link ufficiali:</div>
+    <!-- Riquadro info -->
+    <div id="bio-box">
+        <img src="profile.jpg" alt="Profilo" class="profile-pic">
+        <div class="glitch-text">MAIKBARRE</div>
 
-    <div class="glitch links">
-        <a href="https://www.instagram.com/nuoll24?igsh=N3p5aDJqZHprdXoy">Instagram</a> |
-        <a href="https://www.tiktok.com/@maikbarre24?_t=ZN-8ujv5vSsMKY&_r=1">TikTok</a> |
-    </div>
+        <div class="info">Info Maik</div>
 
-    <div class="glitch discord-box">
-        DISCORD MAIK<br>MAIKTHEBLAK<br>
-        <a href="https://discord.gg/t8ndkBpX" class="glitch">JOIN</a>
+        <div class="info">Ecco tutte le informazioni e i link ufficiali:</div>
+
+        <div class="links">
+            <a href="https://www.instagram.com/nuoll24?igsh=N3p5aDJqZHprdXoy">Instagram</a> |
+            <a href="https://www.tiktok.com/@maikbarre24?_t=ZN-8ujv5vSsMKY&_r=1">TikTok</a>
+        </div>
+
+        <div class="discord-box">
+            DISCORD MAIK<br>MAIKTHEBLAK<br>
+            <a href="https://discord.gg/t8ndkBpX" class="glitch">JOIN</a>
+        </div>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const glitchElements = document.querySelectorAll(".glitch");
+        const introScreen = document.getElementById("intro-screen");
+        const mainContent = document.getElementById("main-content");
         const audio = document.getElementById("background-audio");
 
-        // Effetto glitch su tutti i testi
-        setInterval(function() {
-            glitchElements.forEach(function(el) {
-                let x1 = Math.random() * 3 - 1.5;
-                let y1 = Math.random() * 3 - 1.5;
-                let x2 = Math.random() * 3 - 1.5;
-                let y2 = Math.random() * 3 - 1.5;
-                el.style.textShadow = x1 + "px " + y1 + "px red, " + x2 + "px " + y2 + "px blue";
-            });
-        }, 200);
-
-        // Aggiungi un listener per il click per attivare l'audio
-        document.body.addEventListener('click', function() {
+        // Quando si clicca sulla schermata iniziale
+        introScreen.addEventListener("click", function() {
+            introScreen.style.display = "none"; // Nasconde la schermata iniziale
+            mainContent.style.display = "block"; // Mostra il contenuto principale
+            
+            // Avvia l'audio di sottofondo
             audio.play().catch(() => {
                 console.log("Audio bloccato dal browser.");
             });
