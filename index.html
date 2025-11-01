@@ -154,9 +154,9 @@
 
 <!-- Contenuto principale nascosto -->
 <div id="main-content">
-    <!-- Video di sfondo -->
-    <video id="video-background" autoplay loop muted>
-        <source src="background.mp4" type="video/mp4">
+    <!-- Video di sfondo 4K WebM -->
+    <video id="video-background" autoplay loop muted playsinline>
+        <source src="background.webm" type="video/webm">
         Il tuo browser non supporta i video.
     </video>
 
@@ -192,6 +192,7 @@
         const introScreen = document.getElementById("intro-screen");
         const mainContent = document.getElementById("main-content");
         const audio = document.getElementById("background-audio");
+        const video = document.getElementById("video-background");
 
         // Quando si clicca sulla schermata iniziale
         introScreen.addEventListener("click", function() {
@@ -202,6 +203,9 @@
             audio.play().catch(() => {
                 console.log("Audio bloccato dal browser.");
             });
+            
+            // Ricarica il video per assicurarsi che parta correttamente
+            video.load();
         });
     });
 </script>
